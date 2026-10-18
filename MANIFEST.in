@@ -1,0 +1,16 @@
+include README.md LICENSE NOTICE.md CONTRIBUTING.md VALIDATION.md PUBLIC_FILES.json .gitignore
+recursive-include src/naturelove/templates *.j2 *.css
+recursive-include docs *.md *.png
+recursive-include examples *.json
+recursive-include scripts *.py
+recursive-include tests *.py
+recursive-include .github *.yml
+global-exclude *.py[cod] .DS_Store
+prune private
+prune outputs
+prune exports
+prune data
+prune .venv
+prune build
+prune dist
+prune .pytest_cache

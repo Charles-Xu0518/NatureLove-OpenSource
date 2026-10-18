@@ -1,0 +1,89 @@
+{
+  "title": "Nature Love",
+  "timezone": "Asia/Shanghai",
+  "relationship_date": null,
+  "joint_first_authors": false,
+  "participants": [
+    {
+      "id": "A",
+      "name": "Participant A",
+      "hometown": "",
+      "likes": [],
+      "dislikes": []
+    },
+    {
+      "id": "B",
+      "name": "Participant B",
+      "hometown": "",
+      "likes": [],
+      "dislikes": []
+    }
+  ],
+  "conversation_gap_hours": 3,
+  "day_boundary_hour": 5,
+  "seed": 20261018,
+  "sample_messages": 1000,
+  "sampling_draws": 200,
+  "vocabulary_min_count": 10,
+  "phrases": [
+    "早安",
+    "晚安",
+    "谢谢",
+    "想你",
+    "爱你",
+    "哈哈"
+  ],
+  "topics": {
+    "日常": [
+      "早饭",
+      "午饭",
+      "晚饭",
+      "下班",
+      "睡觉"
+    ],
+    "饮食": [
+      "咖啡",
+      "奶茶",
+      "冰淇淋",
+      "吃饭",
+      "火锅"
+    ],
+    "工作学习": [
+      "上课",
+      "作业",
+      "工作",
+      "论文",
+      "开会"
+    ],
+    "出行": [
+      "出发",
+      "到家",
+      "地铁",
+      "车站",
+      "机场"
+    ]
+  },
+  "exploratory_affect": false,
+  "affect_lexicon": {
+    "positive": [
+      "开心",
+      "喜欢",
+      "谢谢",
+      "爱你",
+      "期待"
+    ],
+    "negative": [
+      "难过",
+      "讨厌",
+      "生气",
+      "失望",
+      "担心"
+    ]
+  },
+  "colors": [
+    "#8E6A9D",
+    "#CB4F86"
+  ],
+  "illustration": null,
+  "synthetic": false
+}

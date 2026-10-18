@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=77", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nature-love-toolkit"
+version = "0.1.0"
+description = "Local chat analysis and pink bilingual commemorative reports"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+license-files = ["LICENSE", "NOTICE.md"]
+authors = [{name = "Nature Love contributors"}]
+dependencies = ["numpy>=1.26,<3", "matplotlib>=3.8,<4", "jieba==0.42.1", "Jinja2>=3.1,<4", "tzdata>=2024.1"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<10", "build>=1.2,<2", "pypdf>=5,<7"]
+
+[project.scripts]
+naturelove = "naturelove.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+naturelove = ["templates/*.j2", "templates/*.css"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

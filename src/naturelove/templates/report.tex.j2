@@ -1,0 +1,71 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[left=18mm,right=18mm,top=17mm,bottom=17mm,headheight=14pt]{geometry}
+\usepackage{fontspec,xeCJK,graphicx,xcolor,multicol,fancyhdr,titlesec}
+\setmainfont{texgyretermes-regular.otf}[BoldFont=texgyretermes-bold.otf,ItalicFont=texgyretermes-italic.otf,BoldItalicFont=texgyretermes-bolditalic.otf]
+\setsansfont{texgyreheros-regular.otf}[BoldFont=texgyreheros-bold.otf,ItalicFont=texgyreheros-italic.otf,BoldItalicFont=texgyreheros-bolditalic.otf]
+\setCJKmainfont{FandolSong-Regular.otf}[BoldFont=FandolSong-Bold.otf]
+\setCJKsansfont{FandolHei-Regular.otf}[BoldFont=FandolHei-Bold.otf]
+\definecolor{rose}{HTML}{BB3F78}\definecolor{blush}{HTML}{FBEFF4}
+\usepackage[colorlinks=true,urlcolor=rose,linkcolor=rose,breaklinks=true]{hyperref}
+\hypersetup{pdftitle={ {{ config.title|tex }} },pdfauthor={ {{ authors|tex }} }}
+\pagestyle{fancy}\fancyhf{}\fancyhead[L]{\sffamily\textcolor{rose}{nature love}}
+\fancyhead[R]{\sffamily\fontsize{7}{9}\selectfont {% if s.synthetic %}SYNTHETIC DEMO{% else %}PERSONAL ARCHIVE{% endif %}}
+\fancyfoot[L]{\sffamily\fontsize{7}{9}\selectfont Community commemorative edition}\fancyfoot[R]{\thepage}
+\setlength{\columnsep}{7mm}\setlength{\parskip}{3pt}\setlength{\emergencystretch}{2em}\raggedbottom
+\titleformat{\section}{\sffamily\bfseries\color{rose}\large}{}{0pt}{}
+\begin{document}\fontsize{9.5}{12.5}\selectfont
+\noindent{\sffamily\bfseries\fontsize{34}{37}\selectfont nature}\quad{\color{rose}\bfseries\itshape\fontsize{32}{35}\selectfont love}\par
+\noindent\textcolor{rose}{\rule{\linewidth}{1pt}}\par
+{% if s.synthetic %}\noindent\colorbox{blush}{\parbox{\dimexpr\linewidth-2\fboxsep}{\sffamily SYNTHETIC DEMO / 合成演示数据}}\par{% endif %}
+\vspace{12pt}\noindent{\sffamily\bfseries\fontsize{24}{29}\selectfont {% if config.title != 'Nature Love' %}{{ config.title|tex }}{% elif language == 'zh' %}把不同，写成共同的日常{% else %}Different voices, a shared everyday{% endif %}}\par\vspace{10pt}
+\noindent{\sffamily\bfseries {{ authors|tex }}}\par\vspace{6pt}
+{% if config.joint_first_authors %}\noindent {% if language == 'zh' %}共同第一作者{% else %}Joint first authors{% endif %}\par{% endif %}
+{% if config.relationship_date %}\noindent Together since: {{ config.relationship_date|tex }}\par{% endif %}
+\noindent {{ s.first_date|tex }} -- {{ s.last_date|tex }}\par\vspace{16pt}
+\noindent{\bfseries {{ abstract|tex }}}\par\vspace{12pt}
+\begin{multicols}{2}
+{% if language == 'zh' %}
+聊天记录保留发送的动作，但一次发送不一定代表完整表达。本稿将消息量、文字量、发言回合和时序分开呈现，再检查词汇重叠是否受抽样影响。结果是可复核的描述性初稿，具体语境应由参与者补充。
+
+个人画像采用配置中的自述信息，独立于定量证据。请在查看结果时同时保留缺失项、词典覆盖与抽样不确定性。
+{% else %}
+A send boundary divides messages, but does not necessarily divide contributions. This draft separates message volume, textual amount, turns and timing before checking lexical overlap under controlled sampling.
+
+The personal portrait uses reported configuration details, separate from quantitative evidence. Missing observations, dictionary coverage and sampling uncertainty remain part of interpretation.
+{% endif %}
+\end{multicols}
+{% for section in sections %}
+\clearpage\noindent{\sffamily\textcolor{rose}{ {% if section.number == 8 %}PERSONAL PORTRAIT{% else %}RESULTS{% endif %} / {{ section.number }} }}\par\vspace{5pt}
+\noindent{\sffamily\bfseries\fontsize{17}{21}\selectfont {{ section.title|tex }}}\par\vspace{8pt}
+\noindent\includegraphics[width=\linewidth,height=.56\textheight,keepaspectratio]{../figures/Figure{{ section.number }}.pdf}\par\vspace{5pt}
+\noindent{\fontsize{8}{10.5}\selectfont\textcolor{rose}{Figure {{ section.number }} |} {{ section.title|tex }}. {% if s.synthetic %}Synthetic data only.{% endif %}}\par
+\begin{multicols}{2}{% for paragraph in section.paragraphs %}
+{{ paragraph|tex }}\par
+{% endfor %}\end{multicols}
+{% endfor %}
+\clearpage\begin{multicols}{2}\section{ {% if language == 'zh' %}讨论与方法{% else %}Discussion and methods{% endif %}}
+{% if language == 'zh' %}
+连续性、消息量、回合组织与词汇重叠是不同维度，不合成为感情分数。本稿描述一个双人档案；线下交流、已读时刻和具体生活背景大多不可见。后续可由双方共同标注部分样本，核对话题与情绪解释。
+
+时间戳按配置时区处理。非系统消息间隔超过阈值开始新对话，发送者切换或新对话开始新回合。聊天日按配置时刻划分。通话仅按有效会话标识去重；没有标识的提示单独统计，缺失时长不补零，冲突时长不任意选取。
+
+内容词由 jieba 分词，去除小型示例停用词。固定合并词表后，每月每人无放回等量抽取消息，报告中位数和中间95\%抽样范围。该范围不是因果置信区间。八类虚词使用小型自定义词典，未经量表验证。词语对比采用带信息先验的加权对数优势比作相对排序。
+
+探索性情绪默认关闭；开启后以示例词典评分，未命中保持缺失，日期整组重抽样估计回复间隔中位数差。没有人工标注的准确率，也没有调用在线模型。语音和通话时长来自输入元数据，不进行转写或录音播放。
+{% else %}
+Continuity, volume, turns and lexical overlap describe separate dimensions, without a combined affection score. This single-pair archive omits much offline communication, read timing and life context. Joint annotation of selected samples could test future interpretations.
+
+Timestamps use the configured timezone. A participant-message gap above the threshold starts a conversation; a sender change or new conversation starts a turn. The configured boundary defines chat days. Calls are grouped only by usable session identifiers. Unidentified notices remain separate; missing or conflicting durations are not arbitrarily filled.
+
+Content words use jieba and a small example stoplist. Equal message samples are drawn without replacement within month and person using a fixed pooled vocabulary. Medians and central 95\% sampling ranges are sensitivity summaries, not causal confidence intervals. Eight-category function-word matching is an unvalidated example. Informative-prior log odds rank corpus-relative word contrasts.
+
+Exploratory affect is disabled by default. If enabled, example-lexicon scores retain missing matches and dates are resampled as clusters for reply-gap median differences. No human-validated accuracy or online model is claimed. Voice and call durations are metadata; no transcription or playback is performed.
+{% endif %}
+\par\smallskip\noindent Gap: {{ config.conversation_gap_hours }} h. Boundary: {{ config.day_boundary_hour }}:00. Seed: {{ config.seed }}.
+\section{References}
+\noindent momoPaper123. Nature Love workflow inspiration. \url{https://github.com/momoPaper123/-}.\par
+\noindent Monroe, B. L., Colaresi, M. P. \& Quinn, K. M. (2008). \textit{Political Analysis} 16, 372--403. \href{https://doi.org/10.1093/pan/mpn018}{doi:10.1093/pan/mpn018}.\par
+\noindent Niederhoffer, K. G. \& Pennebaker, J. W. (2002). \textit{Journal of Language and Social Psychology} 21, 337--360. \href{https://doi.org/10.1177/026192702237953}{doi:10.1177/026192702237953}.\par
+\noindent jieba: \url{https://github.com/fxsjy/jieba}.\par
+\noindent Community project; not affiliated with Nature Portfolio. Private correspondence and generated reports should remain local unless the participants decide otherwise.
+\end{multicols}\end{document}
