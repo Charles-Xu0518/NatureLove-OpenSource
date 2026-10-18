@@ -17,3 +17,5 @@ Dependencies retain their own licenses; installation obtains them through the Py
 No proprietary character artwork, celebrity photographs, brand assets, private correspondence, private aggregate results, database keys, local skill text, or real manuscript is part of this source distribution. Default ribbon artwork is drawn by the package. User-provided illustrations and inputs remain the user's responsibility and are excluded from the release file list.
 
 Nature Love is a community commemorative project, not a Nature Portfolio publication or affiliated product.
+
+The optional WeChatDataAnalysis converter independently maps the schemaVersion 1 JSON fields described by that project's export implementation: https://github.com/LifeArchiveProject/WeChatDataAnalysis/blob/main/src/wechat_decrypt_tool/chat_export_service.py. It does not include the upstream exporter or its database-access code.

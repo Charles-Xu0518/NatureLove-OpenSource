@@ -9,6 +9,7 @@
   "README.md",
   "VALIDATION.md",
   "docs/INPUT_SCHEMA.md",
+  "docs/GETTING_RECORDS.md",
   "docs/METHODS.md",
   "docs/PDF.md",
   "docs/PUBLISHING.md",
@@ -22,6 +23,7 @@
   "examples/demo_messages.json",
   "pyproject.toml",
   "scripts/audit_release.py",
+  "scripts/convert_wechatdataanalysis.py",
   "scripts/prepare_release.py",
   "src/naturelove/__init__.py",
   "src/naturelove/__main__.py",
@@ -35,5 +37,6 @@
   "src/naturelove/templates/report.css",
   "src/naturelove/templates/report.html.j2",
   "src/naturelove/templates/report.tex.j2",
-  "tests/test_pipeline.py"
+  "tests/test_pipeline.py",
+  "tests/test_export_conversion.py"
 ]

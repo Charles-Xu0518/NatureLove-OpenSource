@@ -1,5 +1,7 @@
 # 输入字段
 
+WeChatDataAnalysis 的 `schemaVersion: 1` 导出可先用 `scripts/convert_wechatdataanalysis.py` 转换，具体命令见[获取记录说明](GETTING_RECORDS.md)。其他工具需按下表整理，TXT/ZIP 和微信加密备份不能直接作为输入。
+
 接受 UTF-8 / UTF-8-BOM 编码的 JSON 或 CSV。JSON 可为记录数组，或带 `messages` 数组的对象。CSV 的每一行是一条记录。导出软件的复杂嵌套 JSON、原始 XML、数据库和媒体目录需要先转换。
 
 | 标准字段 | 必需 | 含义及别名 |
