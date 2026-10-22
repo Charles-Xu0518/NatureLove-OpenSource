@@ -10,7 +10,7 @@ readme = "README.md"
 requires-python = ">=3.10"
 license = "MIT"
 license-files = ["LICENSE", "NOTICE.md"]
-authors = [{name = "Nature Love contributors"}]
+authors = [{name = "Zhiheng Xu"}]
 dependencies = ["numpy>=1.26,<3", "matplotlib>=3.8,<4", "jieba==0.42.1", "Jinja2>=3.1,<4", "tzdata>=2024.1"]
 
 [project.optional-dependencies]

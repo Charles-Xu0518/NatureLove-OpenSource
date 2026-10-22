@@ -1,9 +1,6 @@
-# Attribution and distribution boundary
+# Methods, dependencies and distribution
 
-The project's seven-theme workflow was inspired by the public Nature Love scripts:
-https://github.com/momoPaper123/-
-
-At inspection on 2026-10-18, that repository's visible file list did not include a LICENSE file. This distribution does not vendor its source files or extract its dictionaries. The configurable example dictionaries here were independently assembled; the source code and templates here are a separate implementation released under this project's MIT license.
+Nature Love is created and maintained by Zhiheng Xu. This repository contains its own analysis implementation, configurable example dictionaries and report templates, released under the project's MIT license.
 
 Scientific method references:
 

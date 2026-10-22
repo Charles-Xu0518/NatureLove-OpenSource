@@ -18,6 +18,10 @@
 
 ## 获取聊天记录
 
+完整流程是：**手机记录导入电脑微信 → 本地获取并校验数据库密钥 → 导出 JSON 和附件 → 整理后分析**。导出和分析是两个环节，Nature Love 从已经导出的文件开始工作。
+
+这里容易混淆两个工具：**微信流（WeChatBridge）**接收手动合并转发的片段；**WeChatDataAnalysis** 的本地服务用于全量 JSON 和媒体导出。本项目最初测试过前者，完整归档采用后者。它们导出的文件格式也不同。
+
 ### 1. 把手机上的历史记录导入电脑微信
 
 如果手机上的记录最全，先做这一步。手机和电脑登录同一微信账号，连接同一网络。
@@ -31,10 +35,10 @@
 
 ### 2. 从电脑微信导出 JSON 和附件
 
-下面以 [WeChatDataAnalysis](https://github.com/LifeArchiveProject/WeChatDataAnalysis) 为例。本项目附了它的 JSON 转换脚本。
+完整归档采用 [WeChatDataAnalysis](https://github.com/LifeArchiveProject/WeChatDataAnalysis) 的本地导出服务。本项目附有对应的 JSON 转换脚本。
 
 1. 从该工具的 [Releases](https://github.com/LifeArchiveProject/WeChatDataAnalysis/releases/latest) 下载与系统匹配的版本，先查看它对微信版本、系统和芯片的要求。
-2. 按工具说明连接自己的微信数据。数据库密钥是这一环节的条件；若工具读不到密钥，应先解决导出问题，Nature Love 本身不获取密钥。
+2. 按工具说明连接自己的微信数据，先完成数据库密钥的获取和校验，再打开聊天记录。自动获取是否可用取决于系统与微信版本；已有密钥时使用该工具提供的导入入口。Nature Love 本身不获取密钥。
 3. 打开目标联系人的聊天，核对双方身份与最早、最晚日期。
 4. 在导出设置中选择 **JSON、全部时间、全部消息类型**。需要保存照片、视频、表情和语音时，同时选择导出媒体附件；相关选项名称随版本变化。
 5. 保存并解压导出包。保留整个目录，包括联系人目录里的 `messages.json`、媒体目录以及导出报告。可以另外导出一份 HTML，用来对照浏览。
@@ -51,7 +55,7 @@ private/
 
 **有消息条目，不代表附件原件一定还在。** 导出后要打开文件抽查：照片是不是原图，视频和语音能否播放，表情是否有实际图片。过期文件、缩略图和导出失败项要单独记下来。
 
-如果只想整理某一小段，也可以用 Mac 微信的“合并转发 → 转发到其他应用”，通过 [WeChatBridge](https://github.com/freestylefly/WeChatBridge) 保存到文件夹。这条路需要手动分批选择，适合片段；导出的 TXT/ZIP 仍需整理成下方的输入格式。更多导出、附件和完整性核对方法见[获取记录说明](docs/GETTING_RECORDS.md)。
+如果只想整理某一小段，可以用 Mac 微信的“合并转发 → 转发到其他应用”，通过[微信流（WeChatBridge）](https://github.com/freestylefly/WeChatBridge)保存到文件夹。这是前期片段测试用的方式，需要手动分批选择；导出的 TXT/ZIP 仍需整理成下方的输入格式，不能套用全量 JSON 的转换命令。具体步骤见[获取记录说明](docs/GETTING_RECORDS.md)。
 
 ### 3. 转成分析文件
 
@@ -234,6 +238,6 @@ xelatex -no-shell-escape -interaction=nonstopmode -halt-on-error report_zh.tex
 
 原始聊天、附件、配置和稿件留在本地。只处理自己有权使用的记录，引用对话前与另一位参与者确认。
 
-## 来源
+## 作者与许可
 
-分析思路受到 [momoPaper123 的 Nature Love](https://github.com/momoPaper123/-) 启发。本项目独立实现的代码和模板采用 [MIT](LICENSE) 许可，来源说明见 [NOTICE.md](NOTICE.md)。这是纪念文章项目，与 Nature Portfolio 无隶属关系。
+Nature Love 由 Zhiheng Xu 创建和维护，代码与模板采用 [MIT](LICENSE) 许可。所用统计方法和依赖见 [NOTICE.md](NOTICE.md)。这是个人纪念文章项目，与 Nature Portfolio 无隶属关系。
